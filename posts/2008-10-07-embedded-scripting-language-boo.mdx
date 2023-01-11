@@ -11,7 +11,7 @@ In a recent project, I've had the need to use an embedded scripting language. Th
 ## Problems with IronPython
 One of the strategies I've used is to have functions that return functions to provide a more humane syntax, like so: 
 
-``` python
+```python
 def TextWidth(width):
   def f(xq, xs):
     xs.SetTextWidth(width)
@@ -22,7 +22,7 @@ The idea here is that the users script will create a function that will be calle
 Lately, I've been finding myself leaning more in the direction of Ayende's [anonymous base class](http://ayende.com/Blog/archive/2007/12/03/Implementing-a-DSL.aspx) approach. Basically, what you do is to provide a class that wraps the end user script and provides the scope of functions that can be called from the script. However, Python's [class mechanics](http://www.python.org/doc/2.5.2/tut/node11.html) lend themselves very badly to this method, because Python requires abundant amounts of self keywords. 
 Another idea I had using the anonymous base class approach was to separate the actual scripting logic from the API using the [bridge](http://en.wikipedia.org/wiki/Bridge_pattern) pattern. In pseudo-Python, it'd look something like this: 
 
-``` python
+```python
 def TextWidth(width):
   impl.SetTextWidth(width)
 ```

@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "Ditching ActiveRecord For More NHibernate Love"
-date: 2008-10-15 22:19:00
-comments: true
+slug: ditching-activerecord-for-more-nhibernate-love
+date: '2008-10-15'
 categories: [NHibernate, C#, ActiveRecord]
 ---
 
@@ -16,7 +15,7 @@ ActiveRecord is a thin layer on top of NHibernate that makes it easier to use an
 
 One of the new things I wanted to try out for NHibernate was [Fluent NHibernate](http://code.google.com/p/fluent-nhibernate/), a refreshing new way of doing configuration using a fluent interface in C#. NHibernate is usually configured through XML files that look something like this: 
 
-{% codeblock lang:xml %}
+```xml
 <?xml version="1.0" encoding="utf-16"?>
 <hibernate-mapping  auto-import="true" default-lazy="false" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:nhibernate-mapping-2.2">
   <class name="Model.Survey, Model" table="Surveys">
@@ -38,11 +37,11 @@ One of the new things I wanted to try out for NHibernate was [Fluent NHibernate]
     </property>
   </class>
 </hibernate-mapping>
-{% endcodeblock %}
+```
 
 Actually I don't mind XML files that much, except that they are cumbersome to write. But moving to code has it's merits. First of all you get the static type checking from the compiler, which is nice for avoiding spelling mistakes and such. Secondly, having your mapping directly in code makes it refactor-friendly. Renaming properties will automagically propagate to your mapping and reduce strange errors. However, unless you specify column names for your mapping, you might end up refactoring your database indirectly (depending on how you manage your schema), so keep that in mind. Third of all I like the clarity and readability of the configuration:
 
-{% codeblock lang:csharp %}
+```csharp
 public class SurveyMap : ClassMap<Survey>
 {
     public SurveyMap()
@@ -57,7 +56,7 @@ public class SurveyMap : ClassMap<Survey>
         Map(x => x.FooterFile);
     }
 }
-{% endcodeblock %}
+```
 
 Notice the clever use of lambdas and expressions to avoid strings. Nice indeed. The Fluent NHibernate package also includes a some "framework" classes to ease the testing of your database mappings, as outlined in this [post](http://codebetter.com/blogs/jeremy.miller/archive/2008/06/18/working-faster-and-fewer-mapping-errors-with-nhibernate.aspx) by [Jeremy Miller](http://codebetter.com/blogs/jeremy.miller/default.aspx).
 
@@ -76,7 +75,7 @@ There was some breaking changes in NHibernate 2.0, as outlined in this [list](ht
 
 The last thing I ran into was actually a feature from ActiveRecord that I use on application startup called `VerifyModelsAgainstDBSchema`. What this does is to verify that the database schema has the necessary table and columns to fit your mapping. Since the application is question is designed to be very drop-able in terms of throwing it into a web directory and starting it up, I've included functionality to create the database if needed. Luckily, this feature is implementing using very little code. If using LINQ to NHibernate, it can be done as easy as:
 
-{% codeblock lang:csharp %}
+```csharp
 try
 {
     var query = (from o in Session.Linq<Object>()
@@ -89,7 +88,7 @@ catch (ADOException ex)
 {
     _dbExceptions.Add(ex);
 }
-{% endcodeblock %}
+```
 
 The trick (as far as I understand) is that NHibernate supports polymorphism in query engine, so by querying for objects of type Object, you're actually grabbing all the tables in your mapping and thus checking the consistency - since the SQL statement will fail on invalid table and/or column names. By adding the always `false` statement `1 == 0`, you make sure that you don't actually pull anything from the database. Clever.
 

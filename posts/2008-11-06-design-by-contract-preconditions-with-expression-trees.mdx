@@ -1,7 +1,7 @@
 ---
-layout: post
 title: "Design By Contract Preconditions With Expression Trees"
-date: 2008-11-06 23:58:28
+slug: design-by-contract-preconditions-with-expression-trees
+date: "2008-11-06"
 tags: [Design by Contract, C#]
 ---
 
@@ -23,7 +23,7 @@ So why is this even important? One of the merits of Design by Contract are that 
  
 Lets do a simple example to illustrate why this might be useful, consider the following two classes:
  
-``` csharp
+```csharp
 public class Person
 {
     public Person(string name)
@@ -32,6 +32,7 @@ public class Person
     }
     public string Name { get; set; }
 }
+
 public class Account
 {
     private Person _owner;
@@ -48,12 +49,12 @@ public class Account
 
 It seems that the writer of the Account class is implying that an Account object should have an owner - an instance of Person. However, there's nothing to stop a potential client from doing this:
 
-``` csharp
+```csharp
 static void Main(string[] args)
- {
-     var account = new Account(null);
-     Console.WriteLine(account.GetOwnerName());
- }
+{
+    var account = new Account(null);
+    Console.WriteLine(account.GetOwnerName());
+}
 ```
 
 This fails with a NullReferenceException in line 4 with the following stack trace:
@@ -69,7 +70,7 @@ What we need is a way for the writer of the Account class to communicate a stron
 
 Returning to the fail-fast principle - why is this useful? Consider the following change to the Account constructor:
 
-``` csharp
+```csharp
 public Account(Person owner)
 {
     if(owner == null)
@@ -96,8 +97,7 @@ Realistically, I preconditions are only viable part of Design by Contract to imp
 Now, Søren and Andrew (the Glitch) used a general Requires method for defining their preconditions. Søren's looks like this:
 
 ``` csharp
-public static void Require(this T obj,
-    Expression<Func<bool>> booleanExpression)
+public static void Require(this T obj, Expression<Func<bool>> booleanExpression)
 {
    var compiledPredicate = booleanExpression.Compile();
    if (!compiledPredicate())
@@ -117,7 +117,7 @@ The example I'll show here is the same I did in my example earlier namely checki
 
 My ArgumentNotNull method defined on my static Check class looks like this:
 
-``` csharp
+```csharp
 public static void ArgumentNotNull<T>(
      Expression<Func<T>> argumentExpression) where T : class
 {
@@ -144,7 +144,7 @@ public static void ArgumentNotNull<T>(
 
 The use in the Account class will look like this:
 
-``` csharp
+```csharp
 public Account(Person owner)
 {
     Check.ArgumentNotNull(() => owner);
@@ -156,7 +156,7 @@ and it will throw an exception that looks exactly like the one in my first examp
 
 But writing these specialized methods takes longer time and the Requires method can capture infinitely more conditions - so is this really worth it performance-wise? I did a small micro-benchmark - **note: I've focused on the scenario where there's no error, since it by far the most common occurrence - we don't really care about performance if we're killing the program with an exception.**
 
-``` csharp
+```csharp
 static void Main(string[] args)
 {
     var timerArgumentNotNull = new Stopwatch();
@@ -189,7 +189,7 @@ private static void TestMethodWithRequire(Object obj)
 
 And the results were as follows:
 
-{% img /post-images/WindowsLiveWriter/DesignByContractPreconditionsWithExpress_1388A/image_thumb.png %} 
+<img src="/WindowsLiveWriter/DesignByContractPreconditionsWithExpress_1388A/image_thumb.png" />
 
 Now the Requires function could probably be optimized (maybe some expression caching), but the difference is quite remarkable.
 

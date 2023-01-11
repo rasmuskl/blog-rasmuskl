@@ -1,6 +1,7 @@
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head'
+import React from 'react';
 import { getPost, getPostsSlugs } from '../../lib/posts'
 
 export async function getStaticPaths() {
@@ -14,6 +15,18 @@ export async function getStaticPaths() {
         fallback: false
     }
 }
+
+function TestButton() {
+  const [x, setX] = React.useState(false);
+  return (
+    <div onClick={() => setX(!x)} style={{border: '1px solid #fff'}}>Test button {x ? 'ON' : 'OFF'}</div>
+  )
+}
+
+const components = {
+  TestButton
+};
+
 
 export async function getStaticProps(context: any) {
     const slugs = getPostsSlugs();
@@ -35,9 +48,11 @@ export default function Post(props: any) {
         <title>Blog</title>
       </Head>
       <main>
-        <h1>{props.title}</h1>
-        <div>{props.date}</div>
-        <MDXRemote compiledSource={props.source.compiledSource} />
+        <div className="post">
+          <h1>{props.title}</h1>
+          <div>{props.date}</div>
+          <MDXRemote compiledSource={props.source.compiledSource} components={components} />
+        </div>
       </main>
     </>
   )

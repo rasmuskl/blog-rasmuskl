@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "Simple ASP.NET MVC Beta AJAX with jQuery!"
-date: 2008-11-05 21:23:19
-comments: true
+slug: simple-asp-net-mvc-beta-ajax-with-jquery
+date: '2008-11-05'
 tags: [ASP.NET MVC, C#]
 ---
 ## Introduction
@@ -17,15 +16,15 @@ I did play around with the [Microsoft AJAX Library](http://www.asp.net/ajax/) ea
  
 Okay, so I grabbed the beta bits from the ASP.NET MVC and installed them on my machine and fired up a new ASP.NET MVC site:
  
-{% img /post-images/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb.png %} 
+<img src="/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb.png" />
  
 The solution now already contains a "Scripts" folder that contains Microsoft AJAX and jQuery. Continued to head into the Site.Master masterpage in Views/Shared to add jQuery. Now I'd caught the glimpse of blog posts mentioning intellisense for jQuery and found this [post](http://blogs.msdn.com/webdevtools/archive/2008/10/28/rich-intellisense-for-jquery.aspx) describing how to grab the vsdoc version of jQuery from the jQuery site and plug it in.
  
-{% img /post-images/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_1.png %} 
+<img src="/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_1.png" />
  
 Since this was just going to be a demo site, I decided to just use the documented version directly, but this proved to be a bad idea. I encountered a few different runtime JavaScript errors while using this version, more specifically related to the ajaxStart event function. The solution apparently involves a masterpage with the following added to the head section:
 
-``` csharp
+```csharp
 <% if (false) { %>
 <script type="text/javascript" src="../../Scripts/jquery-1.2.6-vsdoc.js"></script>
 <% } %>
@@ -36,7 +35,7 @@ The trick here is that Visual Studio will see the vsdoc version and grab documen
 
 Next I grabbed the Index.aspx view in Views/Home and cleared out all the contents of the Content PlaceHolder and added a bit of HTML:
 
-``` html
+```html
 <div>
     <input type="text" id="name" />
     <a href="#" id="link">Click me!</a>
@@ -46,11 +45,11 @@ Next I grabbed the Index.aspx view in Views/Home and cleared out all the content
 
 This is just plain and simple HTML, with a "void" link that doesn't go anywhere. It looks like this:
 
-{% img /post-images/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_2.png %} 
+<img src="/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_2.png" />
 
 Now one of the great forces about jQuery is it's power to hook into the DOM using powerful selectors. This means that you can have your JavaScript almost completely separated from your HTML. I've often had several small jQuery files that would completely change the appearance of a page and add all kinds of fancy if they were included. This also makes it very easy to enable / disable effects and even test your page degradation for users who have JavaScript disabled (just remove your script reference). However, for simplicity, I've just included my jQuery directly in a script tag:
 
-``` html
+```html
 <script type="text/javascript">
     $(document).ready(function() {
         // Register a click handler on our link
@@ -82,7 +81,7 @@ public ActionResult AjaxHtml(string name)
 
 Rather simple really. Just sleeps for a few seconds (to allow me to see the load on my local dev machine) and then renders a new view called AjaxHtml with a simple Dictionary containing the passed argument name and the current time as ViewModel. I also added a new View called AjaxHtml:
 
-``` csharp
+```csharp
 <%@ Page Language="C#" AutoEventWireup="true" 
  CodeBehind="AjaxHtml.aspx.cs" 
  Inherits="MvcAjaxTest.Views.Home.AjaxHtml" %>
@@ -91,11 +90,11 @@ Ajax Call: <%= ViewData.Model %><br />
 
 The only thing to note about this is that I didn't use my normal masterpage for this page - since I'm only interested in passing this little tidbit of HTML back - not my entire page layout. Launching the application again, typing a name and hitting the link produces the following without a full page reload:
 
-{% img /post-images/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_3.png %} 
+<img src="/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_3.png" />
 
 Additional clicks append further AJAX lines like so:
 
-{% img /post-images/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_4.png %} 
+<img src="/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_4.png" />
 
 Obviously this could have been some other information posted - but this little sample contains both information from client-side (the name) and some data appended by the server (the timestamp).
 
@@ -105,7 +104,7 @@ Now, after doing all this, it didn't feel so impressive to click the link and wa
 
 Adding the load indicator was a breeze really. I just threw the load indicator in an invisible image after the link:
 
-``` html
+```html
 <div>
     <input type="text" id="name" />
     <a href="#" id="link">Click me!</a>
@@ -119,14 +118,14 @@ Note that I used the CSS style visibility: hidden instead of using display: none
 
 All we have left is hooking the load indicator onto jQuerys AJAX call - for a simple scenario like this, the global AJAX events called ajaxStart and ajaxStop are just what we need. ajaxStart will run whenever an AJAX request is started and ajaxStop will run whenever one ends. So at the end of my script block (after the updateResult function), I added the following:
 
-``` js
+```js
 $("#loading").ajaxStart(function() { $(this).css("visibility", "visible"); });
 $("#loading").ajaxStop(function() { $(this).css("visibility", "hidden"); });
 ```
 
 If we had used display: none instead, we could have used the jQuery functions show() and hide() instead of the whole CSS stunt, but I like this better. Firing up the browser and hitting the link now produces enough eye candy to distract my eyes from the 3 second wait:
 
-{% img /post-images/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_5.png %}
+<img src="/WindowsLiveWriter/ASP.NETMVCBetajQuery_15027/image_thumb_5.png" />
 
 ## Resources
 

@@ -13,11 +13,13 @@ export default function Home({ allPostsData }: any) {
   return (
     <>
       <main>
-        {allPostsData.map(({ id, date, slug, title}: any) => (
-          <div key={id}>
-            <a href={`/blog/${slug}`}>{title} ({date})</a>
-          </div>
-        ))}
+        <div className='post-list'>
+          {allPostsData.map(({ id, date, slug, title}: any) => (
+            <div key={id}>
+              <a href={`/blog/${slug}`}>{title} ({date})</a>
+            </div>
+          ))}
+        </div>
       </main>
     </>
   )
