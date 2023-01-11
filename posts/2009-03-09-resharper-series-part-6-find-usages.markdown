@@ -1,0 +1,46 @@
+---
+layout: post
+title: "ReSharper Series - Part 6: Find Usages"
+date: 2009-03-09 21:54:42
+tags: [ReSharper]
+---
+
+This is the 6th post in my [ReSharper Series](/2009/01/10/resharper-series/) - this time we are going to look at how to find usages of particular code members in your code. While plain old text search can be useful sometimes, a structured search is really awesome for getting a good overview. In addition, the standard ReSharper setup on this feature is rather bad compared to what is possible, so a bit of UI tweaking (very simple) is also available.
+ 
+## Find Usages
+ 
+Find usages works on almost all code elements, be it classes, methods or variables, invoking it by pressing **Shift+F12** [IntelliJ: **Alt+F7**] will open a result window, which show the places in your project / solution where the element is used. Using the ASP.NET MVC source, in the Controller class, invoking Find Usages on the ModelState property:
+ 
+{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart8FindUsages_128DA/image_thumb_5.png %} 
+ 
+This gives us the following results window:
+ 
+{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart8FindUsages_128DA/image_thumb_12.png %} 
+ 
+Usages are presented on a namespace level, showing the line of code that includes the given element. Double-clicking or hitting Enter on a line jumps to the file. 
+ 
+## Pimp My Search Results
+ 
+While this results window is useful, you would often like slightly more information. In the options row of the Find Usages window, there is a group by drop down, which is set to Namespace as default - and most people I have seen using ReSharper never change this.
+ 
+{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart8FindUsages_128DA/image_thumb_7.png %} 
+ 
+There are a lot of grouping options available, as shown above - I usually prefer the Namespace and Type option, giving me the same Namespace overview that I had before, but allowing me to see the names of the actual classes that use the element.
+ 
+Another useful option is the Show Preview option, also found on the options row of the Find Usages window. This is disabled by default, but enabling it will show a preview of the code surrounding the selected line in the search results.
+ 
+{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart8FindUsages_128DA/image_thumb_9.png %} 
+ 
+Since I usually have my Find Usages window docked in the bottom (auto-hiding though) of my screen, I prefer setting the Show Preview to Right.
+ 
+With these small tweaks, the Find Usages window now look like this:
+ 
+{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart8FindUsages_128DA/image_thumb_11.png %}
+ 
+## Go To Usage
+ 
+Sometimes you are not interested in looking at the results of your search in the Find Usages window - you have your cursor at some code element and you want to navigate directly to a usage. Hitting **Alt+Shift+F12** [IntelliJ: **Ctrl+Alt+F7**] will bring up a code-completion-like-menu to quickly jump to a usage. Invoking this on the ModelState gives us the following result: 
+ 
+{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart8FindUsages_128DA/image_thumb_4.png %} 
+ 
+Selecting an item from the list jumps directly to usage. In a later post, we will explore more of these quick-navigation options from directly within the code editor.

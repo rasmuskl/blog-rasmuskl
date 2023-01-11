@@ -1,0 +1,103 @@
+---
+layout: post
+title: "Patterns and Principles - Getting Started"
+date: 2008-10-24 15:54:54
+comments: true
+tags: [Patterns, Principles]
+---
+
+## Introduction
+
+Design patterns and principles are a fundamental thing in software development. Yet they're can be quite elusive and difficult to get into. As one of my goals with this blog is to further my own knowledge, as well as share it with others, I've wanted to do posts on basic object oriented principles and patterns. I believe that patterns is one of those things you grasp best when actively thinking about them - and thus to improve my own skillset on patterns, writing blog posts and thinking up good examples is a great way to go.
+
+While this post is mostly an introduction to the series, my approach will definitely be a pragmatic one. I'm aiming to have two types of posts in this series, basic posts introducing specific design patterns or principle with up-to-date .NET examples and more advanced posts on the variations of the patterns and my own crazy experimentation with them. In any case, both types of posts should be brimming with examples if all goes as planned. 
+
+## Design Principles
+
+Drops of distilled wisdom and experience. Most of these principles deal with increasing maintainability, testability, flexibility, reducing (unneeded) complexity and attaining high cohesion and low coupling. Allowing you to mitigate at least one of the inevitable three (death, taxes and changing requirements).  
+
+I personally see them as guidelines for thought, not golden rules, you might encounter situations where fewer of these principles may apply, as there's often trade-offs involved. However, keeping them in mind is a way to open your eyes to other solutions. In my experience, some of them are easier to be adamant about (DRY springs to mind), while some are more subjective considerations and best practices. I guess my point is that you should avoid following anything blindly without thought. Broaden your horizon, don't narrow it.  
+
+I'll not dig too deep into these, but rather give a short introduction in this.. uh, introduction post. Note that this is not an exhaustive list.
+
+#### Single Responsibility Principle
+
+Separation of Concerns. An object should have one and only one reason to change, thus increasing cohesion and avoiding coupled responsibilities. It ties into many of the other principles.
+
+#### Open/Closed Principle
+Your software entities should be closed for modification, but open for extension. Hard to explain briefly, but the gist is to be able to extend the system without modifying existing code (save for bugs). Examples could be: Avoiding dependencies on internal workings and down-casts to specific types.
+
+#### The Interface Segregation Principle
+Do cohesive, responsibility-based interfaces (think roles) instead of huge general interfaces. Your clients will then only depend on a minimal subset of your methods, instead of potentially depending on methods they're not using.
+
+#### DRY
+Don't Repeat Yourself. Duplication is bad, mkay? A good example of this is duplicate code, you'll always miss at least one spot when making changes later.
+
+#### Dependency Inversion Principle
+> "High level modules should not depend upon low level modules. Both should depend upon abstractions.". 
+
+Seeks to lower coupling in the system and increase testability. Applied through dependency injection and often IoC (Inversion of Control) containers.
+
+#### Liskov Substitution Principle
+Informally: When defining an interface or contract, the system should be able to use any (correct) implementation of it. That is, clients of the contract should not have to know the implementation details (or depend on them). Ties into Design by Contract.
+
+#### Law of Demeter
+Also known as the Principle of Least Knowledge. Don't talk to strangers. The law states that a method on an object should only call methods on itself, parameters passed in to the method, objects it created and composite objects. This means don't go dot, dot, doting yourself into the entire object tree.
+
+#### Tell, Don't Ask
+Aim to tell objects what to do instead of asking it about it's state and deciding what to do. The idea is that the object probably knows better than you. It also forces you to think about responsibilities.
+
+#### YAGNI
+You Aren't Gonna Need It. From Extreme Programming. Don't waste your time adding functionality based on what you think the future might bring. You will (most likely) be wrong. In addition, you will have to maintain this extra code and complexity. Variation of KISS (Keep It Simple, Stupid).
+
+#### Favor Composition Over Inheritance
+Inheritance is often over- and misused. Inheritance is an 'is-a relation' and is often used as a 'has-a relation' (composition). An advantage of composition is that composed objects can be replaced dynamically - and they can vary independently. Inheritance still has it's place in some cases though (Hint: When you have an 'is-a relation'). 
+
+## Design Patterns
+
+Design patterns are reusable solutions to recurring problems in software development. One of the best points about design patterns is that they allow developers to talk on a higher level, since they have a shared vocabulary of design techniques. Seeing pattern names in code can also communicate an intent that can otherwise be hard to see.
+
+A lot of the same things from the design principles section apply here too. An UML diagram describing a design pattern is just one instance of the pattern - they're meant for inspiration and almost all patterns have several variation points.
+
+I'll not even try to list design patterns yet, they come in all shapes and sizes, better save something for next time.
+
+## Literature
+
+While blog posts and other online sources are good for quick answers, nothing beats sitting down with a well-written book on a subject.
+
+{% img /post-images/gang-of-four-cover.png 240 184 %}
+
+[Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional/dp/0201633612/)
+
+_Erich Gamma, Richard Helm, Ralph Johnson, John M. Vlissides_
+
+If you've read anything about patterns, you will undoubtedly have heard of the GoF (Gang of Four) book, the often proclaimed Bible of Design Patterns. While this is a great book, especially as a reference catalogue of patterns when you want to look something up, I was kind of lost when I read it the first time. The book is rather abstract and it can be rather confusing for someone starting out with design patterns. I really think you should make it part of your book collection, but if you're starting out with patterns, I would recommend starting out with this book instead:
+
+{% img /post-images/design-patterns-explained-cover.jpg %}
+
+[Design Patterns Explained: A New Perspective on Object-Oriented Design](http://www.amazon.com/Design-Patterns-Explained-Perspective-Object-Oriented/dp/0321247140/)
+
+_Alan Shalloway, James Trott_
+
+This book was my personal eye-opener. It is somewhat more chatty than the GoF book, slightly less catalogue, slightly more "getting into object-oriented design". It's a great introduction to design patterns and the authors go to great lengths to not only describe the patterns, but to discover them by examining different solutions and quantifying the strengths and weaknesses. This is a great book for bridging the gap before GoF. 
+
+{% img /post-images/refactoring-cover.jpg %}
+
+[Refactoring: Improving the Design of Existing Code](http://www.amazon.com/Refactoring-Improving-Existing-Addison-Wesley-Technology/dp/0201485672/)
+
+_Martin Fowler_
+
+While refactoring is not design patterns per se, refactoring is a method to mold your code (or others code) towards some of the same goals as the ones presented by design patterns. It's all about improving the maintainability and flexibility of your software. Fowler does a fine job of explaining the reasons for the different refactorings, describing code smells and which tools to use to get rid of them. Another reason knowledge about refactoring is good is that often, you won't have the luxury (or curse) of working solely with your own code. Refactoring can be a great tool to unravel spaghetti code and gaining insight while (hopefully) adding tests to support it.
+
+## Online Resources
+
+If you want to get started reading more about patterns and principles, here's a few good links for getting started.
+
+- [Object Mentor Published Articles](http://objectmentor.com/resources/publishedArticles.html)
+- [Ward Cunningham's Wiki](http://c2.com/cgi/wiki?CategoryPattern)
+
+## Conclusion
+
+In this post, the first in a series of N, I gave a short introduction to design patterns and principles. I've outlined some recommended getting-started literature and hope to have sparked your interest. Next part will be a basic post describing the first pattern.
+
+Note: I could have more sources in this post, but most of this post is tidbits from experience, opinion and a compilation of snippets from way too many sources. I'll list them in following posts, when we dig into the detail.

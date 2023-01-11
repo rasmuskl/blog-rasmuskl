@@ -1,0 +1,93 @@
+---
+title: "Embedded Scripting Language? Boo!"
+slug: embedded-scripting-language-boo
+date: '2008-10-07'
+tags: [Scripting, Boo, C#]
+---
+## Setting the stage
+
+In a recent project, I've had the need to use an embedded scripting language. The main purpose was to give the end user a [DSL](http://en.wikipedia.org/wiki/Domain_Specific_Language) like feeling, while retaining the power of a full-fledged scripting language. For a long time the project has been using [IronPython](http://www.codeplex.com/Wiki/View.aspx?ProjectName=IronPython) to provide this, but recently I've run into a few problems and started searching for something new.
+
+## Problems with IronPython
+One of the strategies I've used is to have functions that return functions to provide a more humane syntax, like so: 
+
+``` python
+def TextWidth(width):
+  def f(xq, xs):
+    xs.SetTextWidth(width)
+  return f
+```
+
+The idea here is that the users script will create a function that will be called later in the correct context and have the inner function take other arguments. However, it does make the script files more verbose and it can be hard to read the functions when they get more complex. Also it's very hard to add extra arguments to a given script context, since you have to find all the functions called in this context and add the argument to the inner function.
+Lately, I've been finding myself leaning more in the direction of Ayende's [anonymous base class](http://ayende.com/Blog/archive/2007/12/03/Implementing-a-DSL.aspx) approach. Basically, what you do is to provide a class that wraps the end user script and provides the scope of functions that can be called from the script. However, Python's [class mechanics](http://www.python.org/doc/2.5.2/tut/node11.html) lend themselves very badly to this method, because Python requires abundant amounts of self keywords. 
+Another idea I had using the anonymous base class approach was to separate the actual scripting logic from the API using the [bridge](http://en.wikipedia.org/wiki/Bridge_pattern) pattern. In pseudo-Python, it'd look something like this: 
+
+``` python
+def TextWidth(width):
+  impl.SetTextWidth(width)
+```
+
+I will probably write another post about this, but the main idea is to be able to swap the implementation of the script logic on runtime. One use of this could be to find more errors when new scripts are entered, by using a script logic implementation that performs extra validation on the arguments instead of actually performing the intended actions.
+
+## Enter Boo
+I've had my eye on [Boo](http://boo.codehaus.org/) for quite a while. It's an object oriented statically typed programming language that looks a lot like Python, written on the .NET framework. It's open source and was created in 2003 by [Rodrigo B. De Oliveira](http://blogs.codehaus.org/people/bamboo/). The really cool thing about Boo is the focus on extensibility. It's rather easy to insert extra steps into the Boo compiler if you want your own special macros or syntax. 
+So I grabbed the latest stable bits from [Boo distributions](http://dist.codehaus.org/boo/distributions/?C=M;O=D) (version 8.2), started up a new VS project and added a reference to Boo.
+
+## Compiler or Interpreter?
+As mentioned in Arron Washington [tutorial](http://boo.codehaus.org/Boo+as+an+embedded+scripting+language) on Boo as a scripting language, it's possible to either use the Boo compiler or the interactive interpreter. I went with the compiler. I don't have intimate knowledge of the differences between Boos compiler and interpreter, but usual trade-offs include things like speed, since you're running compiled code instead of traversing some form of the [abstract syntax tree](http://en.wikipedia.org/wiki/Abstract_syntax_tree).
+One thing to keep in mind when using the compiler is that you can't unload the assemblies you create unless you unload the entire AppDomain. So unless you worry about AppDomain boundaries and have criteria for unloading your script AppDomain, memory usage will increase as you continue to compile different things. This problem is beyond the scope of this post, but [Google is your friend](http://www.google.com/search?q=assembly+unload+boundaries). As my application is an ASP.NET application that usually gets recycled rather often and because my scripts are semi-static, I've decided not to dig deeper into this. Maybe if circumstances change.
+
+## Simple Example
+As a simple example, the below snippet will load up the Boo compiler, compile a simple script where I inject some code into a class and call the method via the C# interface. 
+
+```csharp
+namespace BooConsoleApp
+{
+    public interface IRunnable
+    {
+        void Run();
+    }
+    public class Program
+    {
+        public static IRunnable CompileToRunnable(string source)
+        {
+            // Boo class we're injecting our code into
+            // A simple Test class implementing our IRunnable interface
+            var classDef = String.Format(
+@"import BooConsoleApp
+class Test(IRunnable):
+  def Run(): 
+    {0}", source);
+            var booCompiler = new BooCompiler();
+            // Compile to memory
+            booCompiler.Parameters.Pipeline = new CompileToMemory();
+            // Compile as library to avoid missing 'No entry point' error
+            booCompiler.Parameters.OutputType = CompilerOutputType.Library;
+            // Add our Boo code as input
+            booCompiler.Parameters.Input.Add(new StringInput("test", classDef));
+            // Compile the code
+            CompilerContext context = booCompiler.Run();
+            // Very basic compile error handling
+            if (context.Errors.Count &gt; 0)
+                throw new Exception(context.Errors.ToString(true));
+            // Create the actual instance of our IRunnable
+            var runnable = context.GeneratedAssembly.CreateInstance("Test") as IRunnable;
+            return runnable;
+        }
+        public static void Main(string[] args)
+        {
+            // Compile our hello world
+            IRunnable runnable = CompileToRunnable("print 'hello world'");
+            // Run the program
+            runnable.Run();
+            Console.ReadLine();
+        }
+    }
+}
+```
+
+And the output is as expected:
+<img src="/run-boo-example.png" />
+
+## Conclusion
+In this post I gave a short primer on getting started with Boo as embedded scripting language. I hope to follow up with more advanced topics. Good luck on getting started with Boo until then.

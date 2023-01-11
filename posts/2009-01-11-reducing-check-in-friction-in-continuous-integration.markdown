@@ -1,0 +1,27 @@
+---
+layout: post
+title: "Reducing Check-In Friction (in Continuous Integration)"
+date: 2009-01-11 21:43:33
+comments: true
+tags: [Continuous Integration]
+---
+
+In a [continuous integration](http://en.wikipedia.org/wiki/Continuous_Integration) environment, one of main motivations is to avoid big bang integrations, where multiple people and/or multiple teams build their part of the project and it is all fused together before release. The benefits of having an automated continuous build are huge, since problems become visible early. The build server polls the source control server and produces a build and runs the appropriate tests when new code is checked in.
+
+{% img right /post-images/WindowsLiveWriter/ReducingCheckInFriction_AEB9/image_thumb.png %}
+
+To have an efficient continuous integration environment, changes should be checked in often. Not checking in often results in more merge conflicts, less visibility of current project status) and reduced benefits from source control in general (less check-ins mean less chance of rolling back, bigger risk of loosing code). To encourage developers to check in their code often, it should be a non-event - it should be easy and not dangerous. However, continuous integration is all about visualizing build failure, where you use a simple tray application, [lava lamps](http://schneide.wordpress.com/2008/10/27/extreme-feedback-device-xfd-the-onoz-lamp/) or whatnot. So checking in something that doesn't work can cause some developer stress, rushing to fix the build.
+
+When the build is broken, other developers can't check in or out (at least they shouldn't - they will either make the problems worse or get broken code), so you want to minimize the time the build is broken. It is useful to have some discipline about the process of checking in, like the "Check In Dance" described Jeremy Miller's [post](http://codebetter.com/blogs/jeremy.miller/archive/2005/07/25/129797.aspx). In general you want to make sure of the following:
+
+ - You have the latest bits from source control.
+ - The code can build successfully.
+ - Relevant tests pass (unit tests, maybe static analysis tools like FxCop)
+
+Jeremy also describes notifying the team that a change is coming. While this might be a good idea for smaller teams, I find that it would be rather disturbing if you are part of a bigger team (10-20+ developers). In this case I would opt for a more optimistic check-in policy, assuming that check-ins won't happen at the same time or won't clash. It involves slightly more praying and can give some annoying conflicts sometimes though.
+
+Reducing friction on the check-in process is important. To make check-in a non-event, it needs to be very simple for the developer. A good solution for this is often to have a "smoke-screen" to verify the quality of your code before checking in. If you look at the above steps, it is rather simple to collect them in a single build target that could be run easily by the developer. This will also increase developer confidence in not breaking the build, thus eliminating check-in fear and enabling often check-in.
+
+You will want to make sure that the build target can be executed in a few minutes and that tools like FxCop use identical settings on developer machines and build server (personal experience). Another option is to use [pre-tested check-ins](http://www.jetbrains.com/teamcity/delayed_commit.html) if you are using TeamCity, but I find that the build target will serve the purpose just as well.
+
+I hope you enjoyed the post. May your future builds be green.
