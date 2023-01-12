@@ -4,24 +4,25 @@ slug: peer-reviews-why-bother
 date: "2012-01-03"
 tags: [Craftsmanship, Thoughts]
 ---
-{% img right /post-images/stamp.jpg %}
 
-Working with code is tricky business – the larger and more complex the code base, the more tricky. Ingraining micro-processes into your work day can help fix some of the issues, some of the broken windows that grow into almost any code base over time. Peer reviews is a great starting point.
+<img src="stamp.jpg" className="right" />
+
+Working with code is tricky business - the larger and more complex the code base, the more tricky. Ingraining micro-processes into your work day can help fix some of the issues, some of the broken windows that grow into almost any code base over time. Peer reviews is a great starting point.
   
-There are many forms of peer review – but this post is mainly about informal check-in reviews. The process is simple: Any commit to the code repository must be signed off by another member of the team. Many argue that small commits are okay to go unchecked - but the size of a “small commit” grows in my experience. My counterargument is that a small commit will only take 30 seconds or less. Simply bring up the change set, go over the changes, discuss anything needed informally, then add "Review: &lt;initials&gt;" to the commit message and fire away.
+There are many forms of peer review - but this post is mainly about informal check-in reviews. The process is simple: Any commit to the code repository must be signed off by another member of the team. Many argue that small commits are okay to go unchecked - but the size of a “small commit” grows in my experience. My counterargument is that a small commit will only take 30 seconds or less. Simply bring up the change set, go over the changes, discuss anything needed informally, then add "Review: &lt;initials&gt;" to the commit message and fire away.
   
 ## Benefits?
   
-One of the first things you’ll notice when you introduce peer reviews is **catching common commit mistakes**. These include small changes in files made while testing or debugging that were not meant to be committed, files that were not related to the current commit and, if your reviewer is alert, files missing from the commit. 
+One of the first things you'll notice when you introduce peer reviews is **catching common commit mistakes**. These include small changes in files made while testing or debugging that were not meant to be committed, files that were not related to the current commit and, if your reviewer is alert, files missing from the commit. 
   
 Another small side effect is a **subconscious increase in code quality**. Knowing that someone else will review your code closely will increase the mental barrier to introducing hacks and other peculiarities that <del>sometimes</del> sneak into code.
   
-While many developers focus more on writing self-documenting, readable code, getting another pair of eyes on the code is great for clarifying the intent of the code – uncovering small scale refactorings such as renames and extractions. The earlier you **uncover and discuss minor design issues** like these and further **aligning team coding styles**, the better shape the code base is likely to end up. Aligning coding styles across multiple teams is a hard task, any improvement is worth taking. Once in a while a peer review will uncover larger design issues and ultimately lead to discarding the code under review and going for a different solution. This is not always a pleasant experience, but it’s **easier to kill your darlings when nudged in the right direction** by a colleague. 
+While many developers focus more on writing self-documenting, readable code, getting another pair of eyes on the code is great for clarifying the intent of the code - uncovering small scale refactorings such as renames and extractions. The earlier you **uncover and discuss minor design issues** like these and further **aligning team coding styles**, the better shape the code base is likely to end up. Aligning coding styles across multiple teams is a hard task, any improvement is worth taking. Once in a while a peer review will uncover larger design issues and ultimately lead to discarding the code under review and going for a different solution. This is not always a pleasant experience, but it's **easier to kill your darlings when nudged in the right direction** by a colleague. 
   
-In line with the last paragraph, reviews also **often spur discussions about larger things like domain concepts and architecture** – it just seems to come up more when looking at concrete issues in the code base. Likewise, the reviewer is investing some of this time in the code and putting his name on it, thus **increasing shared code ownership** of the code.
+In line with the last paragraph, reviews also **often spur discussions about larger things like domain concepts and architecture** - it just seems to come up more when looking at concrete issues in the code base. Likewise, the reviewer is investing some of this time in the code and putting his name on it, thus **increasing shared code ownership** of the code.
   
 Lastly, just seeing how other developers work can **give insight in other developers IDE and tool tricks**. Being a keyboard-junkie myself, I often find myself exchanging IDE / productivity tips during reviews.
   
 ## Conclusion 
   
-Information code reviews are, in my opinion, one of the cheaper ways to directly affect code quality – assuming it’s taken seriously of course. You might notice that many of these benefits are the same as with pair programming – and they are. Pair programming is usually harder to get started on and not suited for all assignments, although most teams ought to do way more pair programming than they are. Peer review is broadly applicable. Try it with your team for a week or a month – if I’m wrong and nothing improves, I’ll buy you a beer next time we meet :-) 
+Information code reviews are, in my opinion, one of the cheaper ways to directly affect code quality - assuming it's taken seriously of course. You might notice that many of these benefits are the same as with pair programming - and they are. Pair programming is usually harder to get started on and not suited for all assignments, although most teams ought to do way more pair programming than they are. Peer review is broadly applicable. Try it with your team for a week or a month - if I'm wrong and nothing improves, I'll buy you a beer next time we meet :-) 

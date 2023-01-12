@@ -6,6 +6,7 @@ import React from 'react';
 import 'sakura.css/css/normalize.css';
 import 'sakura.css/css/sakura.css';
 import 'prismjs/themes/prism-coy.css';
+import '../styles/global.css';
 
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-csharp';

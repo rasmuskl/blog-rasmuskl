@@ -7,7 +7,7 @@ tags: [Continuous Integration]
 
 In a [continuous integration](http://en.wikipedia.org/wiki/Continuous_Integration) environment, one of main motivations is to avoid big bang integrations, where multiple people and/or multiple teams build their part of the project and it is all fused together before release. The benefits of having an automated continuous build are huge, since problems become visible early. The build server polls the source control server and produces a build and runs the appropriate tests when new code is checked in.
 
-{% img right /post-images/WindowsLiveWriter/ReducingCheckInFriction_AEB9/image_thumb.png %}
+<img src="/WindowsLiveWriter/ReducingCheckInFriction_AEB9/image_thumb.png" className="right" />
 
 To have an efficient continuous integration environment, changes should be checked in often. Not checking in often results in more merge conflicts, less visibility of current project status) and reduced benefits from source control in general (less check-ins mean less chance of rolling back, bigger risk of loosing code). To encourage developers to check in their code often, it should be a non-event - it should be easy and not dangerous. However, continuous integration is all about visualizing build failure, where you use a simple tray application, [lava lamps](http://schneide.wordpress.com/2008/10/27/extreme-feedback-device-xfd-the-onoz-lamp/) or whatnot. So checking in something that doesn't work can cause some developer stress, rushing to fix the build.
 

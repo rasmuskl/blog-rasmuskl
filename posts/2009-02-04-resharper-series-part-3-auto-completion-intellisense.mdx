@@ -11,7 +11,7 @@ This is the 3. part of my [ReSharper series](/2009/01/10/resharper-series/). Tod
  
 This is the basic intellisense that you are used to and the one that is automatically provided for you whenever you are typing. It contains everything that matches the prefix that you have written in the scope (class, object, etc) that is relevant - just like you are used to from normal Visual Studio intellisense.
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb.png" />
  
 The keyboard shortcuts for enabling this type of completion is either **Ctrl+Space** or **Alt+Right Arrow**, with Ctrl+Space being the usual one. Now as I mentioned this is enabled when you are typing, but say you have returned to a line of code you were writing and it doesn't pop up on its own, this is the shortcut to be hitting.
  
@@ -21,11 +21,11 @@ Remember in [part 1](/2009/01/21/resharper-series-part-1-the-power-of-alt-enter/
  
 Say I wanted to use a LinkedList in my CheckBalance method shown above, the standard auto-completion isn't very helpful since I have not imported the collections namespace:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_5.png %}
+<img src="/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_5.png" />
  
 This doesn't really help me much. However, if you enable symbol import by pressing **Alt+Shift+Space** [IntelliJ: **Ctrl+Alt+Space**], this is what you get:
- 
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_6.png %}
+
+<img src="/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_6.png" />
  
 ReSharper will complete the common prefix and suggest type names in other namespaces. When using generic types I usually hit **&lt;** at this point and type out the generic constraint. While writing this post I noticed that it was behaving oddly when completing types with multiple generic types, but it might just be me. Anyway it is a really helpful in addition to the basic intellisense that we usually use.
  
@@ -37,7 +37,7 @@ I find that I mostly use smart completion when I am writing method calls, especi
  
 If I have a method that takes a boolean for example, enabling smart completion will only suggest symbols that actually have the relevant type, like so:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_8.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_8.png" />
  
 The shortcut to use smart completion is **Ctrl+Alt+Space** [IntelliJ: **Ctrl+Shift+Space**]. I find that it is somewhat situational for me, but it is useful - I use the other two more though.
  
@@ -45,10 +45,9 @@ The shortcut to use smart completion is **Ctrl+Alt+Space** [IntelliJ: **Ctrl+Shi
  
 ## Camel Humps
  
-[S�ren](http://www.publicvoid.dk) mentioned camel humps when I was talking about basic navigation in the last post - and this also holds true for all the auto-completions shown above. If you type upper case letters while completing, it will match camel humps in the list. For example, if I wanted to use a LinkedResourceCollection as seen in the symbol completion example, here's what I could do:
+[Søren](http://www.publicvoid.dk) mentioned camel humps when I was talking about basic navigation in the last post - and this also holds true for all the auto-completions shown above. If you type upper case letters while completing, it will match camel humps in the list. For example, if I wanted to use a LinkedResourceCollection as seen in the symbol completion example, here's what I could do:
 
- 
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_9.png %}
+<img src="/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_9.png" />
  
 I find that this is mostly useful when you have types with long names that you use often.
  
@@ -56,18 +55,18 @@ I find that this is mostly useful when you have types with long names that you u
  
 Another thing you can do if you want more control over what is filtered in the completion lists is to enable case sensitive prefix matching in the ReSharper settings under IntelliSense -> Completion Behavior. 
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_10.png %}
+<img src="/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_10.png" />
  
 This will force ReSharper to match the case as you are typing and it will only present symbols that actually match the case - this could potentially be useful if you don't prefix your instance fields (personally I prefer prefixing with underscore).
  
 Without case sensitivity:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_13.png %}
+<img src="/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_13.png" />
  
 With case sensitivity:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_12.png %} 
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_11.png %}
+<img src="/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_12.png" />
+<img src="/WindowsLiveWriter/ReSharperSeriesPart3IntellisenseCompleti_114CF/image_thumb_11.png" />
  
 I haven't played around with case sensitivity enabled so much, generally I just accept having a longer result list and not being forced to case my identifiers.
  

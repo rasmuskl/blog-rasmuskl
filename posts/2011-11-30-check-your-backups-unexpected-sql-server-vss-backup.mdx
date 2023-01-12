@@ -1,5 +1,5 @@
 ---
-title: "Check your backups – unexpected SQL Server VSS backup"
+title: "Check your backups - unexpected SQL Server VSS backup"
 slug: check-your-backups-unexpected-sql-server-vvs-backup
 date: "2011-11-30"
 tags: [SQL Server]
@@ -23,7 +23,7 @@ The first backup went through fine, but restoring the incremental backup resulte
 
 <font color="#ff0000">This differential backup cannot be restored because the database has not been restored to the correct earlier state.</font> 
 
-SQL Server refused to restore my incremental database – this is only supposed to happen if there has been another full backup in between. I double checked the backups I had fetched, checked that I had the set up the new backups correctly and that the old backup job was gone. Everything seemed fine.
+SQL Server refused to restore my incremental database - this is only supposed to happen if there has been another full backup in between. I double checked the backups I had fetched, checked that I had the set up the new backups correctly and that the old backup job was gone. Everything seemed fine.
 
 I then explored the backup history a bit further with a query adjusted from the one found in [this](http://blog.sqlauthority.com/2010/11/10/sql-server-get-database-backup-history-for-a-single-database/) post:
 
@@ -42,7 +42,7 @@ The result showed that there had indeed been backups in between my nightly runs:
 
 <img src="/image_thumb_1.png" />
 
-Further research revealed that backup devices with a GUID name are virtual backup devices and the times of backups matched the daily schedule of our bare metal system backup. Turns out that [R1Soft's backup software](http://www.r1soft.com/windows-cdp/) integrates with SQL Server’s VSS writer service to perform backups when it finds databases on disk.
+Further research revealed that backup devices with a GUID name are virtual backup devices and the times of backups matched the daily schedule of our bare metal system backup. Turns out that [R1Soft's backup software](http://www.r1soft.com/windows-cdp/) integrates with SQL Server's VSS writer service to perform backups when it finds databases on disk.
 
-Disabling the VSS writer service returned the backups to a working state (VSS backup + my own incremental would also have worked). I did consider skipping my own nightly backups (since the VSS backup is super fast) and just using the R1Soft one, but decided against it for now – my own management is already set up and if I do need to restore, grabbing the backup from the external backup is much slower and more tedious than having it on disk already.
+Disabling the VSS writer service returned the backups to a working state (VSS backup + my own incremental would also have worked). I did consider skipping my own nightly backups (since the VSS backup is super fast) and just using the R1Soft one, but decided against it for now - my own management is already set up and if I do need to restore, grabbing the backup from the external backup is much slower and more tedious than having it on disk already.
 
