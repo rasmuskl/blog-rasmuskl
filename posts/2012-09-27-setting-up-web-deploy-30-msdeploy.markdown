@@ -25,59 +25,59 @@ The site is an ASP.NET 4.0 mixed WebForms / MVC project. The application itself 
   
 2 - Installed Management Service role for my IIS in Server Manager.
   
-{% img /post-images/image_thumb_10.png %}
+<img src="/image_thumb_10.png" />
   
 3 - Changed Web Management Service to Start automatically (delayed) and specified a specific deployment user.
   
-{% img /post-images/4_thumb.png %}
+<img src="/4_thumb.png" />
   
 4 - Configured Management Service within IIS.
   
-{% img /post-images/1_thumb.png %}
+<img src="/1_thumb.png" />
   
 Like this:
   
-{% img /post-images/2_thumb.png %}
+<img src="/2_thumb.png" />
   
 5 - Created a new site in IIS. Gave the deployment user access to the site folder on the web server. 
   
 6 - Gave the deployment user access to the site through IIS Manager Permissions.
   
-{% img /post-images/5_thumb.png %}
+<img src="/5_thumb.png" />
   
 7 - Installed Web Deploy 3.0 including IIS Deployment Handler (wasn’t visible in the first custom install). Not using Platform installer. The IIS Deployment handler install option was not visible the first time I tried, because I hadn’t installed the Management Service in IIS.
   
-{% img /post-images/16_thumb.png %}
+<img src="/16_thumb.png" />
   
 8 - The guide told me to add rules, but rules already existed in Management Service Delegation.
   
-{% img /post-images/15-out-of-order_thumb.png %}
+<img src="/15-out-of-order_thumb.png" />
   
 (Already existing rules:)
   
-{% img /post-images/7_thumb.png %}
+<img src="/7_thumb.png" />
   
 9 - Installed IIS on my local machine. Was rather freshly paved, so I hadn’t yet. I’m guessing most of you can skip this step.
   
 10 - Wasn’t able to ‘Connect to Site’ as mentioned in test guide – so I installed IIS Manager for Remote Administration v1.1 using Web Platform Installer.
   
-{% img /post-images/9_thumb.png %}
+<img src="/9_thumb.png" />
   
 11 - Connected to the Site.
   
-{% img /post-images/10_thumb.png %}
+<img src="/10_thumb.png" />
   
 12 - Selected the site.
   
-{% img /post-images/11_thumb.png %}
+<img src="/11_thumb.png" />
   
 13 - ... aaaaand imported my application package that I’d created through Visual Studio.
   
-{% img /post-images/13_thumb.png %}
+<img src="/13_thumb.png" />
   
 14 - Profit!
   
-{% img /post-images/14_thumb.png %}
+<img src="/14_thumb.png" />
   
 ## Conclusion
   

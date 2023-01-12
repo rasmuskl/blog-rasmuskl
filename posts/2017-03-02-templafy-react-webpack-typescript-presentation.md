@@ -5,7 +5,7 @@ tags: [Templafy, React, Webpack, TypeScript, Presentations, CNUG]
 ---
 Yesterday at Templafy in collaboration with Copenhagen .NET User Group I presented my talk: "ASP.NET without Razor: React, Webpack and TypeScript".
 
-{% img /post-images/presentation-at-templafy.jpg %}
+<img src="/presentation-at-templafy.jpg" />
 
 Demos and slides can be found here: https://github.com/rasmuskl/react-webpack-typescript
 

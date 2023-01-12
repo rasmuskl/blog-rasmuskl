@@ -15,11 +15,11 @@ This series is based on ReSharper 4.1 - as this is the newest version. You can d
  
 If you already installed ReSharper earlier and want to switch to either of the bindings, you can do so in the ReSharper Options in the General section: 
  
-{% img /post-images/WindowsLiveWriter/ResharperEventDay0Installation_E3B3/image_thumb_1.png %} 
+<img src="/WindowsLiveWriter/ResharperEventDay0Installation_E3B3/image_thumb_1.png" /> 
  
 The first time you use some of the shortcut keys that clash with Visual Studios bindings, you will get a dialog like the one below:
  
-{% img /post-images/WindowsLiveWriter/ResharperEventDay0Installation_E3B3/image_thumb_2.png %} 
+<img src="/WindowsLiveWriter/ResharperEventDay0Installation_E3B3/image_thumb_2.png" /> 
  
 I usually just check "Apply to all ReSharper shortcuts". Haven't had a problem with it yet. Then you should be set for starting up with ReSharper.
  

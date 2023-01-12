@@ -18,7 +18,7 @@ I run with a dual monitor setup at home with two Samsung monitors and find that 
 
 I prefer to work with a dark background when I'm coding, since monitors use [additive colors](http://en.wikipedia.org/wiki/Additive_color), having a white background simply emits way too much light and my eyes get tired more quickly. I happened to find a theme [Rob Conery](http://blog.wekeroad.com/) modified to look like the vibrant ink theme from [TextMate](http://macromates.com/). Robs version can be found [here](http://blog.wekeroad.com/blog/textmate-theme-for-visual-studio-take-2/). It looks like this (although I'm using Courier New instead of Consolas - old habit):
 
-{% img /post-images/WindowsLiveWriter/ResharperEventDay1MyVisualStudioSetup_D707/image_thumb.png %}
+<img src="/WindowsLiveWriter/ResharperEventDay1MyVisualStudioSetup_D707/image_thumb.png" />
 
 You will also notice that all my windows are set to auto-hide. This discourages me from clicking on stuff with my mouse and I can easily bring up most of what I need with keyboard shortcuts anyway.
 

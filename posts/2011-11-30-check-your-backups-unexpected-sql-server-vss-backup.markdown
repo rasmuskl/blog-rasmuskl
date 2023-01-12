@@ -40,7 +40,7 @@ ORDER BY backup_start_date DESC
 
 The result showed that there had indeed been backups in between my nightly runs:
 
-{% img /post-images/image_thumb_1.png %}
+<img src="/image_thumb_1.png" />
 
 Further research revealed that backup devices with a GUID name are virtual backup devices and the times of backups matched the daily schedule of our bare metal system backup. Turns out that [R1Soft's backup software](http://www.r1soft.com/windows-cdp/) integrates with SQL Server’s VSS writer service to perform backups when it finds databases on disk.
 

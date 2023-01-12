@@ -13,15 +13,15 @@ Furthermore, since many people use the VS binding mode in ReSharper, I am going 
  
 The first small feature is navigation between members. Basically what it gives you is a way to quickly navigate between methods in your class. If you are in a method like so:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb.png" /> 
  
 Pressing **Alt+Arrow Down** will navigate to the next method, while using **Alt+Arrow Up** will send you to the method signature, like so:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_1.png %}
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_1.png" />
  
 When at a method signature already, you can jump up and down between method signatures in the same way.
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_4.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_4.png" /> 
  
 This comes in handy when moving methods, since you need to be at the method signature to do so.
  
@@ -33,11 +33,11 @@ The shortcuts for moving code involve a lot of keys, but they are pretty easy to
  
 Let us look at the first example. With our cursor placed on the method signature of the Withdraw method, we hold down Alt, Ctrl and Shift to enable movement. This will make the block of code we are moving turn a light cyan (with my color scheme at least):
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_5.png %}
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_5.png" />
  
 Hitting the move up shortcut (**Alt+Ctrl+Shift+Arrow Up**) sends our method above the Deposit method like so:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_6.png %}
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_6.png" />
  
 We can also move methods down using **Alt+Ctrl+Shift+Arrow Down**. Quite a bit easier than copy pasting it - and useful for reordering methods quickly if combined with the method navigation above.
  
@@ -45,11 +45,11 @@ We can also move methods down using **Alt+Ctrl+Shift+Arrow Down**. Quite a bit e
  
 Now we can move quite a bit more than methods. Say we have a method call where we wanted to move the arguments. We can do so using **Alt+Ctrl+Shift+Arrow Left** and **Alt+Ctrl+Shift+Arrow Right**. Again, as we hold down Alt, Ctrl and Shift, the block we are about to move is highlighted:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_7.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_7.png" /> 
  
 And sending it left is easy:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_8.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_8.png" /> 
  
 This also works for actual method signatures, just be aware that this *doesn't actually refactor your method* and change all the call sites for the method (although ReSharper can do this in it's refactor menu - look for the Change Signature refactoring).
  
@@ -57,29 +57,29 @@ This also works for actual method signatures, just be aware that this *doesn't a
  
 When we are dealing with statements inside a method, it can some times be useful to reorder lines of code or move code in and out of control structures, so when we hold down Ctrl, Alt and Shift here it actually suggests that we can use all 4 directions.
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_9.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_9.png" /> 
  
 Moving up and down lets us maintain our level of scope, in this case, pressing **Alt+Ctrl+Shift+Arrow Down**, we would send the method call into the else branch:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_10.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_10.png" /> 
  
 Repeating this would send it below the negativeText call. When we move left and right, we move in and out of scopes, thus if we press **Alt+Ctrl+Shift+Arrow Left**, we yank the statement all the way out of the entire if statement:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_11.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_11.png" /> 
  
 Again, if we move up and down here, we maintain our level of scope and thus do not re-enter the if statement unless we move the statement right.
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_12.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_12.png" /> 
  
 ## Reordering Expressions
  
 The last short example is reordering expressions, this makes it easy to reorder expressions and move parts of them around. Like here:
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_14.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_14.png" /> 
  
 Moving Balance right would actually swap the two values.
  
-{% img /post-images/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_15.png %} 
+<img src="/WindowsLiveWriter/ReSharperSeriesPart4MovingCode_12A24/image_thumb_15.png" /> 
  
 ## Summary
  

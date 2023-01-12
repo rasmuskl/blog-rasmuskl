@@ -11,7 +11,7 @@ tags: [Visual Studio, Tips]
   
 First up we have the navigation bar – which is taking up a line of your precious screen estate.
   
-{% img /post-images/image_thumb_2.png %}
+<img src="/image_thumb_2.png" />
   
 To remove it, jump to:
   
@@ -25,29 +25,29 @@ The following tip I got from [Rasmus Wulff Jensen](http://www.rwj.dk/) when I me
   
 Right click on the tool bar to bring up the tool bar selection. 
   
-{% img /post-images/image_thumb_3.png %}
+<img src="/image_thumb_3.png" />
   
 Choose ‘Customize’. Change the tab to ‘Commands’ and move focus to the bottom of the list, like so:
   
-{% img /post-images/image_thumb_4.png %}
+<img src="/image_thumb_4.png" />
   
 The hit the ‘Add Command’ button and go to the ‘Build’ category. Scrolling to the bottom, you will find a command labeled ‘Solution Configurations’. Pick it.
   
-{% img /post-images/image_thumb_5.png %}
+<img src="/image_thumb_5.png" />
   
 You now have an inline configuration manager on your top toolbar without taking up extra space. Same trick can be applied to any other commands.
   
-{% img /post-images/image_thumb_6.png %}
+<img src="/image_thumb_6.png" />
   
 ## Docking the Find dialog box
   
 The ‘Find and Replace’ dialog is probably one of the most used dialogs in Visual Studio – however with the default settings, you get a floating dialog that doesn’t seem to want to go away after you’re done using it.
   
-{% img /post-images/image_thumb_7.png %}
+<img src="/image_thumb_7.png" />
   
 If you dock it – like so:
   
-{% img /post-images/image_thumb_8.png %}
+<img src="/image_thumb_8.png" />
   
 ... and unpin it, it will behave nicely and disappear when you’re done searching or press ESC.
   
@@ -55,6 +55,6 @@ If you dock it – like so:
   
 This is more a matter of taste. Personally I’ve been using dark themes for Visual Studio forever. My eyes feel way more relaxed after a day of using a dark theme. My theory is that since computer monitors use [additive colors](http://en.wikipedia.org/wiki/Additive_color) (with white being a full blast mix of red, green and blue and black being no light), a dark theme simply emits way less light.
   
-{% img /post-images/image_thumb_9.png %}
+<img src="/image_thumb_9.png" />
   
 If you want, you can download my personal theme [here](/files/RKL-blue-theme-vs2010-2012-02-28.zip) (ReSharper specific). It’s the same as I’ve previously posted, except I’ve adjusted it to work properly with Razor views too.

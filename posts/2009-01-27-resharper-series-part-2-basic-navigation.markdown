@@ -13,23 +13,23 @@ ReSharper offers many ways of navigating between files based on what you need - 
  
 The first one is called Go to Type and is activated through **Ctrl+T**[IntelliJ: **Ctrl+N**]. This will bring up the window shown below. Basically it's a quick search in all your classes.
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_4.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_4.png" /> 
  
 Most often, navigating types is what you want, but sometimes it can be useful to navigate files instead, especially for configuration files, NHibernate mappings and other special files. ReSharper has a Go to File shortcut that brings up the following window - **Ctrl+Shift+T** [IntelliJ: **Ctrl+Shift+N**]:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb.png" /> 
  
 Both of the search windows allow * wildcards, like in the below search where I wanted to find all the files that contain the word "Base":
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_1.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_1.png" /> 
  
 They also allow the use of the + wildcard to denote one or more characters...
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_5.png %}
+<img src="/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_5.png" />
  
 ... and the ? wildcard to denote zero or one character: 
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_6.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_6.png" /> 
  
 ## Closing Files
  
@@ -41,11 +41,11 @@ While ReSharper gives us a nice way of opening files by name, it can still be us
  
 Lets imagine that I am browsing the MVC source - standing in the ControllerBase file in the System.Web.Mvc project. In my Solution Explorer I browse to the MvcFutures project to see something. After leaving the Solution Explorer, pressing **Alt+Ctrl+L** will bring me to my last location again:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_2.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_2.png" /> 
  
 However ReSharper also has a shortcut for bringing up the Solution Explorer - it is called Locate in Solution Explorer -** Alt+Shift+L**. Using this in the previous situation will actually track the current file and open the Solution Explorer with this file highlighted, as shown below:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_3.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay2_A25E/image_thumb_3.png" /> 
  
 I actually find both shortcuts useful in different situations - but play around with it and see what works for you. 
  

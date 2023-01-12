@@ -8,7 +8,7 @@ The event had around 260 atteendees and the talk was a bit shorter this time, as
 
 It was a 2 talk event with Anders Hejlsberg following my session with a great introduction to TypeScript and where it it is headed.
 
-{% img /post-images/presentation-at-microsoft.jpg %}
+<img src="/presentation-at-microsoft.jpg" />
 
 Demos and slides can be found here: https://github.com/rasmuskl/react-webpack-typescript
 

@@ -12,6 +12,6 @@ I got a few requests for the app, so I've uploaded the source to Bitbucket [here
   
 Bear in mind that this app was hacked together in a few hours (with the purpose of learning WPF actually - we got sidetracked) - so don't expect quality code or an excellent polished app. It has quirks - you have been warned :-)
   
-{% img /post-images/image_thumb.png %}
+<img src="/image_thumb.png" />
   
 Enjoy.

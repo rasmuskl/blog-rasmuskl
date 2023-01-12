@@ -13,15 +13,15 @@ The single thing you will probably use most in ReSharper is the quick-fix comman
  
 Say I am implementing the standard Account class and want to check something with the balance when doing a withdrawal. As I write the code shown below, ReSharper will pop up a red light-bulb on the left of my method as my cursor is on it. This is ReSharper's way of telling me that an action is available.
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_1.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_1.png" /> 
  
 When you see a yellow or red light-bulb, pressing **Alt+Enter** brings up the action menu:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_2.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_2.png" /> 
  
 In this case, ReSharper is offering to create the missing method for me. Picking the default option by hitting the Enter key creates the new method with a default implementation:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_3.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_3.png" /> 
  
 ReSharper will show these light yellow boxes for on our new method for things that we might want to change. They don't go too well with my color scheme, but the idea is that ReSharper suggests a return value, a method name and types/names of the arguments. It is easy to navigate between the yellow boxes using either Enter or Tab.
  
@@ -33,19 +33,19 @@ Errors like this will also often show up as red squigglies like the ones you kno
  
 Another thing you will probably notice after installing ReSharper is that some of your text turns gray like this:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_4.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_4.png" /> 
  
 Gray text is ReSharper's way of letting us know we have dead or unused code. We are not using the amount argument for anything in the method and thus it can safely be removed. Placing our cursor on amount, another light-bulb pops up and gives us the following context menu:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_5.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_5.png" /> 
  
 This is where we start benefiting from the fact that ReSharper knows the structure of our code. It is suggesting that we remove the parameter and update the usages. In this simple example, the only usage is the Withdraw method above, but this will actually work on much more advanced examples. Accepting the action with Enter removes the parameter and also changes the code in Withdraw method:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_6.png %}
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_6.png" />
  
 ReSharper also checks your import statements to see if you are importing namespaces that you are not using and suggests removing them like so: 
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_13.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_13.png" /> 
  
 Later in the series, we will look at some of ReSharper's options for choosing namespaces to always import some often used namespaces and ignoring them when scanning for use.
  
@@ -53,7 +53,7 @@ Later in the series, we will look at some of ReSharper's options for choosing na
  
 When using types in namespaces that you have not imported, ReSharper will pop up a blue square to suggest an import like so:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_7.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_7.png" /> 
  
 No more writing using statements by hand. Recently I've started using ReSharper's auto-completion (will be visited one of the next parts) for this, but it's still a very useful feature, again using **Alt+Enter**.
  
@@ -61,27 +61,27 @@ No more writing using statements by hand. Recently I've started using ReSharper'
  
 ReSharper also supports hints and suggestions, both are actually suggestions for changing something in your code, but hints are less obtrusive and won't show up when navigating between suggestions and not show up on the scrollbar in the code editor. 
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_8.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_8.png" /> 
  
 If we look at this bit of code, we notice that the `List<string>` has a solid green underline - this is a hint. The new keyword has a green squiggly line, which denotes a suggestion. Looking at the scrollbar to the right in our code editor, there's a small green line - this is ReSharper telling us that there is a suggestion at this point in our code. Hovering the mouse over the line tells us what the suggestion is. Warnings and Errors will show up as yellow and red lines. The hint is not shown as mentioned.
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_14.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_14.png" /> 
  
 Let us deal with the hint first. This hint is actually for us to use the C# 3.0 var keyword instead of our `List<string>`. 
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_9.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_9.png" /> 
  
 I usually don't like this hint so much, since I feel it sometimes reduces the readability of my code if I overuse the var keyword - luckily there is an option in the context menu to change the inspection options for the particular hint. Pressing Enter brings up the following dialog:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_10.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_10.png" /> 
  
 Here I can set the severity of not using the var keyword when possible. Since I don't like it - I choose "Do not show" and press OK. Now the solid green line is gone. Proceeding to press **Alt+Enter** on the suggestion asks me if I want to use a collection initializer instead of calling the add method on the next line:
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_11.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_11.png" /> 
  
 Accepting this removed the call to Add and uses the collection initializer - as expected.
  
-{% img /post-images/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_12.png %} 
+<img src="/WindowsLiveWriter/ReSharperEventDay1Basics_97DC/image_thumb_12.png" /> 
  
 ## Context Is King
  

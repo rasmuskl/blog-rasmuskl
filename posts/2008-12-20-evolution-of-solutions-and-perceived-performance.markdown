@@ -85,7 +85,7 @@ public static int[] Generate()
 
 I adjusted it a bit and finally found a place to make an ode to the awesomeness that is [XOR swap](http://en.wikipedia.org/wiki/Xor_swap_algorithm), swapping two values without using a temporary variable. Even though the algorithm was faster asymptotically, I was curious how it would venture against the sort-based LINQ solutions performance-wise. Here is the result:
 
-{% img /post-images/WindowsLiveWriter/EvolutionofSolutionsandPerceivedPerforma_118/image_thumb.png %} 
+<img src="/WindowsLiveWriter/EvolutionofSolutionsandPerceivedPerforma_118/image_thumb.png" /> 
 
 Note that both HLINQ and PLINQ use all 4 cores on my quad-core machine. I realize there's an overhead using LINQ, but I'm still impressed how much faster this simple little algorithm is.
 
