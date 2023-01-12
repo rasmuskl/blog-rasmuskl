@@ -1,0 +1,33 @@
+---
+title: "ReSharper Series - Part -2: Introduction & Motivation"
+slug: resharper-series-part-minus-2-introduction-motivation
+date: "2009-01-10"
+tags: ReSharper
+---
+{% img right /post-images/WindowsLiveWriter/ResharperEventDay2Motivation_C8A6/image_thumb.png %}  
+
+This is the first and -2. part of my [ReSharper series](/2009/01/10/resharper-series/). -2 because it there's still a few parts until I hit real ReSharper content. The subject today will be a quick introduction to ReSharper and the motivation for using it - so why should we?
+ 
+## What is ReSharper?
+ 
+ReSharper is a Visual Studio add-in made by [JetBrains](http://www.jetbrains.com). In their words, ReSharper is:
+
+> The most intelligent add-in to Visual Studio.
+
+What it really amounts to is a lot of smart static analysis of your code, much like Visual Studio does already to provide you with IntelliSense and red squigglies when you make mistakes. What they do with this information is to provide context-based suggestions and generally reduce the number of keystrokes required to produce the most common code scenarios. 
+ 
+In addition to this, the static analysis information can be used to provide a structured way to refactor your code without resorting to error-prone search and replace techniques. Since ReSharper "knows" the structure of your code, it can provide much better support for stuff like renaming classes, extracting and moving functionality.
+ 
+## Strengths
+ 
+From my point of view and experience the main strength of ReSharper is it's context-awareness. This is what gives the intelligent and intuitive feel when using it. Since ReSharper provides a lot of functionality, filtering it by what is available (or reasonable) at this given point in the code is really valuable. 
+ 
+Besides context-awareness, I really love the navigation options provided by ReSharper. It allows me to navigate along different axis depending on what I'm looking for. Providing easy options for navigating according to usages (where is this method called from), inheritance trees (superclasses/interfaces/subclasses) or completely different files, depending on which aspects of the code I am exploring at the given moment.
+ 
+Third is code-generation and refactoring. This is often mentioned as the main strength of ReSharper - this is mostly convenience, reducing the amount of manual work required to do refactoring and doing (mostly small-scale) code generation used to create the usual cruft code for classes, properties and such.
+ 
+## Weaknesses
+ 
+Seems odd to talk about weaknesses in this motivation post, but this isn't really weaknesses in ReSharper per se, but more things I still feel I'm missing. I actually feel that ReSharper is doing the job it is supposed to do quite well.
+ 
+At the moment, ReSharper is the only real productivity add-in I use in Visual Studio - but I feel I'm missing features for basic text editor stuff, quick navigation in the current file (ReSharper provides some, but it can be heavy sometimes). It seems that the vim add-in [ViEmu](http://www.viemu.com/) might be some of what I'm looking for. Maybe after I'm done with this series. 
