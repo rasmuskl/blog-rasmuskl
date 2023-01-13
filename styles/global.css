@@ -1,3 +1,8 @@
+body {
+    max-width: 50em;
+    color: #ffffff;
+}
+
 img.right {
     float: right;
 }

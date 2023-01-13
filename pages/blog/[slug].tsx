@@ -56,13 +56,11 @@ export default function Post(props: any) {
       <Head>
         <title>Blog</title>
       </Head>
-      <main>
-        <div className="post">
-          <h1>{props.title}</h1>
-          <div>{props.date}</div>
-          <MDXRemote compiledSource={props.source.compiledSource} components={components} />
-        </div>
-      </main>
+      <div className="post">
+        <h1>{props.title}</h1>
+        <div>{props.date}</div>
+        <MDXRemote compiledSource={props.source.compiledSource} components={components} />
+      </div>
     </>
   )
 }
