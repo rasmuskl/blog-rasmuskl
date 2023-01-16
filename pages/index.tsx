@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getSortedPostsData } from '../lib/posts';
 
 export async function getStaticProps() {
@@ -15,7 +16,7 @@ export default function Home({ allPostsData }: any) {
       <div className='post-list'>
         {allPostsData.map(({ id, date, link, title}: any) => (
           <div key={id} style={{display: 'flex', justifyContent: 'space-between'}}>
-            <a href={link}>{title}</a>
+            <Link href={link}>{title}</Link>
             <div>{date}</div>
           </div>
         ))}
