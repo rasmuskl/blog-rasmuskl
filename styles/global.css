@@ -1,6 +1,11 @@
 body {
     max-width: 50em;
     color: #ffffff;
+    padding: 0;
+}
+
+main, .navbar {
+    padding: .5rem 1rem;
 }
 
 img.right {
@@ -11,4 +16,24 @@ img.center {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+a.clean {
+    color: #fff;
+
+}
+
+a:hover {
+    border-bottom: 0;
+    text-decoration: underline;
+}
+
+a.clean:hover {
+    border-bottom: 0;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
 }

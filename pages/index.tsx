@@ -14,8 +14,9 @@ export default function Home({ allPostsData }: any) {
     <>
       <div className='post-list'>
         {allPostsData.map(({ id, date, link, title}: any) => (
-          <div key={id}>
-            <a href={link}>{title} ({date})</a>
+          <div key={id} style={{display: 'flex', justifyContent: 'space-between'}}>
+            <a href={link}>{title}</a>
+            <div>{date}</div>
           </div>
         ))}
       </div>
