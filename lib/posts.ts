@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import dayjs, { Dayjs } from 'dayjs';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
@@ -17,7 +18,8 @@ export function getPost(fileName: string) {
     };
 }
 
-export function getPostsSlugs(): { fileName: string, slug: string }[] {
+
+export function getPostsSlugs(): { fileName: string, slug: string, date: Dayjs }[] {
     const fileNames = fs.readdirSync(postsDirectory);
     const allPostsData = fileNames
     .filter(fileName => fileName.endsWith('.mdx'))
@@ -27,7 +29,8 @@ export function getPostsSlugs(): { fileName: string, slug: string }[] {
       const matterResult = matter(fileContents);
       return {
         fileName,
-        slug: matterResult.data.slug
+        slug: matterResult.data.slug,
+        date: dayjs(matterResult.data.date)
       };
     });
     
@@ -49,10 +52,13 @@ export function getSortedPostsData() {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
+    const date = dayjs(matterResult.data.date);
 
     // Combine the data with the id
     return {
       id,
+      date,
+      link: `/${date.format('YYYY/MM/DD')}/${matterResult.data.slug}`, 
       ...matterResult.data,
     };
   });

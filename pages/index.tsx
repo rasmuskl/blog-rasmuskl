@@ -13,9 +13,9 @@ export default function Home({ allPostsData }: any) {
   return (
     <>
       <div className='post-list'>
-        {allPostsData.map(({ id, date, slug, title}: any) => (
+        {allPostsData.map(({ id, date, link, title}: any) => (
           <div key={id}>
-            <a href={`/blog/${slug}`}>{title} ({date})</a>
+            <a href={link}>{title} ({date})</a>
           </div>
         ))}
       </div>

@@ -2,7 +2,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head'
 import React from 'react';
-import { getPost, getPostsSlugs } from '../../lib/posts'
+import { getPost, getPostsSlugs } from '../../../../lib/posts'
 
 export async function getStaticPaths() {
     const slugs = getPostsSlugs();
@@ -10,6 +10,9 @@ export async function getStaticPaths() {
         paths: slugs.map(s => ({
             params: {
                 slug: s.slug,
+                year: s.date.format('YYYY'),
+                month: s.date.format('MM'),
+                day: s.date.format('DD')
             }
         })),
         fallback: false
