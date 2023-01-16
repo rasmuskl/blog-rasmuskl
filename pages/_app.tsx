@@ -5,7 +5,7 @@ import React from 'react';
 
 import 'sakura.css/css/normalize.css';
 import 'sakura.css/css/sakura-dark.css';
-import 'prismjs/themes/prism-coy.css';
+import 'prismjs/themes/prism-okaidia.css';
 import '../styles/global.css';
 
 import 'prismjs/components/prism-javascript';
@@ -13,6 +13,8 @@ import 'prismjs/components/prism-csharp';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-powershell';
+
 import Layout from '../components/Layout';
 
 export default function App({ Component, pageProps }: AppProps) {
