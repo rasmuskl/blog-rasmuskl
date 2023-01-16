@@ -4,7 +4,7 @@ import Prism from "prismjs";
 import React from 'react';
 
 import 'sakura.css/css/normalize.css';
-import 'sakura.css/css/sakura.css';
+import 'sakura.css/css/sakura-dark.css';
 import 'prismjs/themes/prism-coy.css';
 import '../styles/global.css';
 

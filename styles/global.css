@@ -18,12 +18,16 @@ img.center {
     margin-right: auto;
 }
 
-a.clean {
+a.clean, a.clean:visited {
     color: #fff;
+}
 
+a, a:visited {
+    color: #96dbe8
 }
 
 a:hover {
+    color: #d56da0;
     border-bottom: 0;
     text-decoration: underline;
 }
