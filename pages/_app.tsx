@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <title>Blog</title>
+        <title>Blog | rasmuskl</title>
       </Head>
       <Layout>
         <Component {...pageProps} />

@@ -41,7 +41,7 @@ export default function Post(props: any) {
   return (
     <>
       <Head>
-        <title>{props.title}</title>
+        <title>{props.title} | rasmuskl</title>
       </Head>
       <div className="post">
         <h1>{props.title}</h1>
