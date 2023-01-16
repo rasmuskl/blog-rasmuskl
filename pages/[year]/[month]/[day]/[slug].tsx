@@ -2,6 +2,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head'
 import React from 'react';
+import { YouTubeEmbed } from '../../../../components/YouTubeEmbed';
 import { getPost, getPostsSlugs } from '../../../../lib/posts'
 
 export async function getStaticPaths() {
@@ -19,26 +20,9 @@ export async function getStaticPaths() {
     }
 }
 
-function YouTubeEmbed(props: { id: string }) {
-  return (
-    <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%' }}>
-      <iframe style={{ position: 'absolute', width: '100%', height: '100%'}} src={`//youtube.com/embed/${props.id}`} frameBorder={0} allowFullScreen={true} />
-    </div>
-  );
-}
-
-function TestButton() {
-  const [x, setX] = React.useState(false);
-  return (
-    <div onClick={() => setX(!x)} style={{border: '1px solid #fff'}}>Test button {x ? 'ON' : 'OFF'}</div>
-  )
-}
-
 const components = {
-  TestButton,
-  YouTubeEmbed
+    YouTubeEmbed
 };
-
 
 export async function getStaticProps(context: any) {
     const slugs = getPostsSlugs();
