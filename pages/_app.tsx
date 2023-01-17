@@ -3,10 +3,10 @@ import Head from 'next/head'
 import Prism from "prismjs";
 import React from 'react';
 
-import 'sakura.css/css/normalize.css';
-import 'sakura.css/css/sakura-dark.css';
+import 'normalize.css/normalize.css';
 import 'prismjs/themes/prism-okaidia.css';
 import '../styles/global.css';
+
 
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-csharp';

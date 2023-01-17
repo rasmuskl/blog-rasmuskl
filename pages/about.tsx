@@ -6,7 +6,7 @@ export default function About() {
             <Head>
                 <title>About | rasmuskl</title>
             </Head>
-            <div>
+            <div className="page">
                 <img src="/rkl.jpg" alt="Rasmus" className="right" />
             
                 <p>My name is Rasmus Kromann-Larsen and I am a danish developer blogging about the technical side of my life, mostly .NET stuff, but also fundamental topics like design patterns, principles and productivity boosters.</p>
