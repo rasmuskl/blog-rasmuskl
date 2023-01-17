@@ -5,64 +5,72 @@ import dayjs, { Dayjs } from 'dayjs';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export function getPost(fileName: string) {
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const matterResult = matter(fileContents);
-
-    return {
-        fileName,
-        title: matterResult.data.title,
-        content: matterResult.content,
-        date: matterResult.data.date
-    };
+export interface Post {
+  fileName: string;
+  title: string;
+  slug: string;
+  date: string;
+  link: string;
+  content: string;
+  year: string;
+  month: string;
+  day: string;
 }
 
+export function getPost(fileName: string): Post {
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const post = buildPost(fileName, fileContents);
+    return post;
+}
 
-export function getPostsSlugs(): { fileName: string, slug: string, date: Dayjs }[] {
+function getLink(slug: string, date: Dayjs) {
+    return `/${date.format('YYYY/MM/DD')}/${slug}`;
+}
+
+function buildPost(fileName: string, fileContents: string) {
+  const matterResult = matter(fileContents);
+  const date = dayjs(matterResult.data.date);
+  const slug = matterResult.data.slug as string;
+  const title = matterResult.data.title as string;
+
+  return {
+    fileName,
+    date: date.format('DD/MM/YYYY'),
+    slug,
+    title,
+    link: getLink(slug, date),
+    content: fileContents,
+    year: date.format('YYYY'),
+    month: date.format('MM'),
+    day: date.format('DD')
+  };
+}
+
+export function getPostsSlugs(): Post[] {
     const fileNames = fs.readdirSync(postsDirectory);
     const allPostsData = fileNames
     .filter(fileName => fileName.endsWith('.mdx'))
     .map((fileName) => {
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const matterResult = matter(fileContents);
-      return {
-        fileName,
-        slug: matterResult.data.slug,
-        date: dayjs(matterResult.data.date)
-      };
+      return buildPost(fileName, fileContents);
     });
     
     return allPostsData;
 }
 
-export function getSortedPostsData() {
-  // Get file names under /posts
+export function getSortedPostsData(): Post[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames
     .filter(fileName => fileName.endsWith('.mdx'))
     .map((fileName) => {
-    // Remove ".md" from file name to get id
     const id = fileName.replace(/\.mdx$/, '');
-
-    // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
-    const date = dayjs(matterResult.data.date);
-
-    // Combine the data with the id
-    return {
-      id,
-      date,
-      link: `/${date.format('YYYY/MM/DD')}/${matterResult.data.slug}`, 
-      ...matterResult.data,
-    };
+    return buildPost(fileName, fileContents);
   });
-  // Sort posts by date
+
   return allPostsData.sort((a: any, b: any) => {
     if (a.date < b.date) {
       return 1;

@@ -1,16 +1,16 @@
 import Link from 'next/link';
-import { getSortedPostsData } from '../lib/posts';
+import { getSortedPostsData, Post } from '../lib/posts';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   return {
     props: {
-      allPostsData,
+      allPostsData
     },
   };
 }
 
-export default function Home({ allPostsData }: any) {
+export default function Home({ allPostsData }: { allPostsData: Post[] }) {
   return (
     <>
       <div className='post-list'>

@@ -3,19 +3,14 @@ import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head'
 import React from 'react';
 import { YouTubeEmbed } from '../../../../components/YouTubeEmbed';
-import { getPost, getPostsSlugs } from '../../../../lib/posts'
+import { getPost, getPostsSlugs, Post } from '../../../../lib/posts'
 import rehypePrism from '@mapbox/rehype-prism';
 
 export async function getStaticPaths() {
     const slugs = getPostsSlugs();
     return {
         paths: slugs.map(s => ({
-            params: {
-                slug: s.slug,
-                year: s.date.format('YYYY'),
-                month: s.date.format('MM'),
-                day: s.date.format('DD')
-            }
+            params: s
         })),
         fallback: false
     }
@@ -30,7 +25,7 @@ export async function getStaticProps(context: any) {
     const current = slugs.find(x => x.slug === context.params.slug)!;
     const post = getPost(current.fileName);
     
-    const source = await serialize(post.content, { 
+    const serialized = await serialize(post.content, { 
       mdxOptions: { 
         rehypePlugins: [rehypePrism] 
       } 
@@ -38,13 +33,13 @@ export async function getStaticProps(context: any) {
 
     return {
         props: {
-            source,
-            ...post
+          source: serialized.compiledSource,
+          ...post,
         },
     }
 }
 
-export default function Post(props: any) {
+export default function PostSlug(props: { source: string } & Post) {
   return (
     <>
       <Head>
@@ -53,7 +48,7 @@ export default function Post(props: any) {
       <div className="post">
         <h1>{props.title}</h1>
         <div>{props.date}</div>
-        <MDXRemote compiledSource={props.source.compiledSource} components={components} />
+        <MDXRemote compiledSource={props.source} components={components} />
       </div>
     </>
   )
