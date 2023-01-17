@@ -26,6 +26,8 @@
     "prismjs": "1.29.0",
     "@types/prismjs": "1.26.0",
     "dayjs": "1.11.7",
-    "normalize.css": "8.0.1"
+    "normalize.css": "8.0.1",
+    "@mapbox/rehype-prism": "0.8.0",
+    "@types/mapbox__rehype-prism": "0.8.0"
   }
 }

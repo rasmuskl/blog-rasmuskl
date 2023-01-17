@@ -4,6 +4,7 @@ import Head from 'next/head'
 import React from 'react';
 import { YouTubeEmbed } from '../../../../components/YouTubeEmbed';
 import { getPost, getPostsSlugs } from '../../../../lib/posts'
+import rehypePrism from '@mapbox/rehype-prism';
 
 export async function getStaticPaths() {
     const slugs = getPostsSlugs();
@@ -28,7 +29,13 @@ export async function getStaticProps(context: any) {
     const slugs = getPostsSlugs();
     const current = slugs.find(x => x.slug === context.params.slug)!;
     const post = getPost(current.fileName);
-    const source = await serialize(post.content);
+    
+    const source = await serialize(post.content, { 
+      mdxOptions: { 
+        rehypePlugins: [rehypePrism] 
+      } 
+    });
+
     return {
         props: {
             source,

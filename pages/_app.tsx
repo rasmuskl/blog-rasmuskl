@@ -1,8 +1,7 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import Prism from "prismjs";
 import React from 'react';
-
+import 'prismjs';
 import 'normalize.css/normalize.css';
 import 'prismjs/themes/prism-okaidia.css';
 import '../styles/global.css';
@@ -18,10 +17,6 @@ import 'prismjs/components/prism-powershell';
 import Layout from '../components/Layout';
 
 export default function App({ Component, pageProps }: AppProps) {
-  React.useEffect(() => {
-    Prism.highlightAll();
-  }, []);
-
   return (
     <>
       <Head>
