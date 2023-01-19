@@ -46,7 +46,7 @@ function buildPost(fileName: string, fileContents: string) {
     slug,
     title,
     link: getLink(slug, date),
-    content: fileContents,
+    content: matterResult.content,
     year: date.format('YYYY'),
     month: date.format('MM'),
     day: date.format('DD')
