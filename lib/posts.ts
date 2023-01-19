@@ -2,6 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import dayjs, { Dayjs } from 'dayjs';
+import { Feed } from 'feed';
+import utc from "dayjs/plugin/utc";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(utc);
+dayjs.extend(customParseFormat);
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
@@ -78,4 +84,53 @@ export function getSortedPostsData(): Post[] {
       return -1;
     }
   });
+}
+
+function parseDayjs(date: string) {
+  return dayjs.utc(date, 'DD-MM-YYYY');
+}
+
+export async function generateRssFeed() {
+  const posts = getSortedPostsData();
+  const siteUrl = "https://rasmuskl.dk";
+  const date = new Date();
+  const author = {
+    name: "Rasmus Kromann-Larsen",
+    email: "rasmus@kromann-larsen.dk",
+    link: "https://twitter.com/rasmuskl",
+  };
+  const feed = new Feed({
+    title: "rasmuskl",
+    description: "",
+    id: siteUrl,
+    link: siteUrl,
+    copyright: `All rights reserved ${date.getFullYear()}, Rasmus Kromann-Larsen`,
+    updated: date,
+    generator: "Feed for Node.js",
+    feedLinks: {
+      rss2: `${siteUrl}/rss/feed.xml`,
+      json: `${siteUrl}/rss/feed.json`,
+      atom: `${siteUrl}/rss/atom.xml`,
+    },
+    author,
+  });
+  posts.forEach((post) => {
+    const url = `${siteUrl}/blog/${post.slug}`;
+
+    feed.addItem({
+      title: post.title,
+      id: url,
+      link: url,
+      content: post.content,
+      author: [author],
+      contributor: [author],
+      date: parseDayjs(post.date).toDate(),
+    });
+  })
+
+
+  fs.mkdirSync("./public", { recursive: true });
+  fs.writeFileSync("./public/feed.xml", feed.rss2());
+  fs.writeFileSync("./public/atom.xml", feed.atom1());
+  fs.writeFileSync("./public/feed.json", feed.json1());
 }

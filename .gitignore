@@ -11,3 +11,7 @@ yarn-error.log*
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+
+public/feed.json
+public/feed.xml
+public/atom.xml

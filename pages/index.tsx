@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { getSortedPostsData, Post } from '../lib/posts';
+import { generateRssFeed, getSortedPostsData, Post } from '../lib/posts';
 
 export async function getStaticProps() {
+  await generateRssFeed();
   const allPostsData = getSortedPostsData();
   return {
     props: {

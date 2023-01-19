@@ -28,6 +28,7 @@
     "dayjs": "1.11.7",
     "normalize.css": "8.0.1",
     "@mapbox/rehype-prism": "0.8.0",
-    "@types/mapbox__rehype-prism": "0.8.0"
+    "@types/mapbox__rehype-prism": "0.8.0",
+    "feed": "4.2.2"
   }
 }
