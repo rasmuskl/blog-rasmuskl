@@ -78,7 +78,7 @@ export function getSortedPostsData(): Post[] {
   });
 
   return allPostsData.sort((a: any, b: any) => {
-    if (a.date < b.date) {
+    if (parseDayjs(a.date) < parseDayjs(b.date)) {
       return 1;
     } else {
       return -1;
