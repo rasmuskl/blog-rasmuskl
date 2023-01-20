@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { generateRssFeed, getSortedPostsData, Post } from '../lib/posts';
+import { generateRssFeed, getPostsMeta, PostMeta } from '../lib/posts';
 
 export async function getStaticProps() {
   await generateRssFeed();
-  const allPostsData = getSortedPostsData();
+  const allPostsData = getPostsMeta();
   return {
     props: {
       allPostsData
@@ -11,14 +11,14 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ allPostsData }: { allPostsData: Post[] }) {
+export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
   return (
     <>
       <div className='post-list'>
-        {allPostsData.map(({ id, date, link, title}: any) => (
-          <div key={id} className="post-list-item">
+        {allPostsData.map(({ slug, displayDate, link, title}) => (
+          <div key={slug} className="post-list-item">
             <Link href={link}>{title}</Link>
-            <div className='post-list-item-date'>{date}</div>
+            <div className='post-list-item-date'>{displayDate}</div>
           </div>
         ))}
       </div>

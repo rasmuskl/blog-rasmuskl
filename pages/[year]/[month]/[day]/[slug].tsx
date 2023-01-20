@@ -3,11 +3,11 @@ import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head'
 import React from 'react';
 import { YouTubeEmbed } from '../../../../components/YouTubeEmbed';
-import { getPost, getPostsSlugs, Post } from '../../../../lib/posts'
+import { getPost, getPostsMeta, Post } from '../../../../lib/posts'
 import rehypePrism from '@mapbox/rehype-prism';
 
 export async function getStaticPaths() {
-    const slugs = getPostsSlugs();
+    const slugs = getPostsMeta();
     return {
         paths: slugs.map(s => ({
             params: s
@@ -21,7 +21,7 @@ const components = {
 };
 
 export async function getStaticProps(context: any) {
-    const slugs = getPostsSlugs();
+    const slugs = getPostsMeta();
     const current = slugs.find(x => x.slug === context.params.slug)!;
     const post = getPost(current.fileName);
     
@@ -47,7 +47,7 @@ export default function PostSlug(props: { source: string } & Post) {
       </Head>
       <div className="post">
         <h1>{props.title}</h1>
-        <div>{props.date}</div>
+        <div>{props.displayDate}</div>
         <MDXRemote compiledSource={props.source} components={components} />
       </div>
     </>

@@ -11,13 +11,16 @@ dayjs.extend(customParseFormat);
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export interface Post {
+export interface Post extends PostMeta {
+  content: string;
+}
+
+export interface PostMeta {
   fileName: string;
   title: string;
   slug: string;
-  date: string;
+  displayDate: string;
   link: string;
-  content: string;
   year: string;
   month: string;
   day: string;
@@ -42,7 +45,7 @@ function buildPost(fileName: string, fileContents: string) {
 
   return {
     fileName,
-    date: date.format('DD/MM/YYYY'),
+    displayDate: date.format('DD/MM/YYYY'),
     slug,
     title,
     link: getLink(slug, date),
@@ -53,7 +56,7 @@ function buildPost(fileName: string, fileContents: string) {
   };
 }
 
-export function getPostsSlugs(): Post[] {
+export function getPostsMeta(): PostMeta[] {
     const fileNames = fs.readdirSync(postsDirectory);
     const allPostsData = fileNames
     .filter(fileName => fileName.endsWith('.mdx'))
@@ -61,12 +64,17 @@ export function getPostsSlugs(): Post[] {
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       return buildPost(fileName, fileContents);
-    });
+    }).map(convertToMeta);
     
-    return allPostsData;
+    return sortPosts(allPostsData);
 }
 
-export function getSortedPostsData(): Post[] {
+function convertToMeta(post: Post): PostMeta {
+  let { content, ...postMeta } = post;
+  return postMeta;
+}
+
+export function getPosts(): Post[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames
     .filter(fileName => fileName.endsWith('.mdx'))
@@ -77,8 +85,12 @@ export function getSortedPostsData(): Post[] {
     return buildPost(fileName, fileContents);
   });
 
-  return allPostsData.sort((a: any, b: any) => {
-    if (parseDayjs(a.date) < parseDayjs(b.date)) {
+  return sortPosts(allPostsData);
+}
+
+function sortPosts<T extends PostMeta>(posts: T[]): T[] {
+  return posts.sort((a: T, b: T) => {
+    if (parseDayjs(a.displayDate) < parseDayjs(b.displayDate)) {
       return 1;
     } else {
       return -1;
@@ -91,7 +103,7 @@ function parseDayjs(date: string) {
 }
 
 export async function generateRssFeed() {
-  const posts = getSortedPostsData();
+  const posts = getPosts();
   const siteUrl = "https://rasmuskl.dk";
   const date = new Date();
   const author = {
@@ -124,7 +136,7 @@ export async function generateRssFeed() {
       content: post.content,
       author: [author],
       contributor: [author],
-      date: parseDayjs(post.date).toDate(),
+      date: parseDayjs(post.displayDate).toDate(),
     });
   })
 

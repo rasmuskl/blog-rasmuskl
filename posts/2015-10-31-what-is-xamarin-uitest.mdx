@@ -6,6 +6,62 @@ date: "2015-10-31"
 ---
 One of the projects I have been working on at Xamarin is leading development on our C# test framework Xamarin.UITest.
 
-I recently wrote a guest post over on the Xamarin blog about some of the background and design that went into creating the framework.
+I recently wrote a guest post over on the Xamarin blog about some of the background and design that went into creating the framework. The Xamarin blog has been removed so I have moved the post here.
 
-You can find the post [here](https://blog.xamarin.com/what-is-xamarin-uitest/).
+
+## What is Xamarin.UITest?
+
+A key component of Xamarin Test Cloud is the development of test scripts to automate mobile UI testing. The Xamarin Test Cloud team started working on Xamarin.UITest in December of 2013 and released a public version at Xamarin Evolve in October, 2014. In this blog post, I'm going to share some thoughts and advice about the framework and our design decisions.
+
+<img src="/TestCloudReport.png" />
+
+What is Xamarin.UITest?
+Xamarin.UITest is a C# test automation framework that enables testing mobile apps on Android and iOS. Mobile automation is far from an easy endeavor, and Xamarin.UITest aims to provide a suitable abstraction on top of the platform tools to let you focus on what to test. Tests are written locally using either physical devices or simulators/emulators and then submitted to Xamarin Test Cloud for more extensive testing across hundreds of devices.
+
+Available from NuGet, there are two restrictions for non-Xamarin Test Cloud users: 1) they can only run on simulators/emulators and 2) the total duration of a single test run cannot exceed 15 minutes.
+
+### A Simple Example
+Here is a simple example of a test written with Xamarin.UITest:
+
+```csharp
+[Test]
+public void MyFirstTest()
+{
+  var app = ConfigureApp
+    .Android
+    .ApkFile("MyApkFile.apk")
+    .StartApp();
+  app.EnterText("NameField", "Rasmus");
+  app.Tap("SubmitButton");
+}
+```
+
+First, we configure the app that we're going to be testing. Then we enter "Rasmus" into a text field and press a button.
+
+The main abstraction in Xamarin.UITest is an app. This is the gateway for communicating with the app running on the device. There is an iOSApp, an AndroidApp, and an IApp interface containing all of the shared functionality between the platforms, allowing cross-platform app tests to be written against the IApp interface.
+
+### Design Goals
+Xamarin.UITest is designed with a few design goals in mind, which help focus our efforts and provide a level of consistency. Some of the goals are inspired by Mogens Heller Grabe and his Rebus project. Goals are only as good as the reasons that back them, so let's take a look at some of the goals for Xamarin.UITest and why we decided that each of them was important.
+
+#### Discoverable
+Part of the power of C# is amazing tools; for example, we have come to depend heavily on IntelliSense. One goal in designing Xamarin.UITest was to harness these tools and make as much functionality as possible discoverable through IntelliSense. In order to do this, you must minimize the number of entry points that the end user has to know about.
+
+At the time of this writing, the only entry point for writing tests in Xamarin.UITest is the static ConfigureApp fluent interface. Once you have this entry point, everything else in the framework can be discovered through IntelliSense. The only exception is the TestEnvironment static class, which provides a bit of contextual information about the test environment that can be helpful when configuring the app.
+
+#### Declarative
+Mobile testing is hard. Platforms and tools are constantly changing and, as a result, the underlying framework often has to adapt. In addition to the rapid pace of change, the test has to perform on a wide range of devices with different sizes and processing power.
+
+We built Xamarin.UITest with this in mind. We strive to provide a succinct interface for describing intent, such as the interactions you want performed or what information you are interested in.
+
+A common issue in testing that's very evident in mobile testing is waiting: you tap a button and have to wait for the screen to change before you can interact with the next control. The easy solution is to use a Thread.Sleep call to wait just enough time, but what amount of time is “enough”? This leads to slow tests that wait too long or tests that are brittle because they're pushing the limits. A better solution would be wait for a change in the app. In Xamarin.UITest, one option is app.WaitForElement, which will continuously poll the app. However, waiting is an artifact of making the test work. The scenario we are trying to solve is to interact with two controls. Our solution for most gestures is to automatically wait if the element is not already present on the screen. In the best case, this alleviates the tester from worrying about details that are not important to the test. The only downside is that a failure will be a bit slower.
+
+#### No Visible External Dependencies
+In recent years, .NET has been greatly enhanced by technology such as NuGet, which allows us to create software that utilizes many other libraries, but there are still has a few problems. One of these problems is versioning, and a prime example is depending on a NuGet package that depends on a specific version of a popular package such as Newtonsoft.Json. This then restricts you in your own Newtonsoft.Json version and could possibly mismatch with other NuGet packages you want to use.
+
+For Xamarin.UITest, our aim is to have no visible external dependencies. This doesn't mean that we code everything from the ground up; rather, we take care to not use any types from our dependencies in our public interface, so that we can use ILMerge (or ILRepack in our case) to combine everything into a single assembly with our dependencies internalized. In the case that we need something that is available on our public interface, we could open the framework up and provide a separate integration NuGet package. A nice example of this approach can also be seen in [Rebus](https://github.com/rebus-org/Rebus).
+
+#### Helpful Errors
+Errors happen. Mobile testing exercises many components and interacts with quite a few external systems, and there may be prerequisites or other environment settings that are not set up properly. In these cases, we often have no choice but to report the error, because our aim is to provide the best possible information about what went wrong. In addition, if we have any information that might help the user resolve the problem, we attempt to include this information in the error message as well.
+
+### More Information
+For more information, follow the tutorials in our documentation. Karl Krukow and I also did a presentation featuring a general overview of Xamarin Test Cloud, a demo of Xamarin.UITest, and a live stream of one of the Xamarin Test Cloud labs that you can watch [here](https://www.youtube.com/watch?v=PQMBCoVIABI).
