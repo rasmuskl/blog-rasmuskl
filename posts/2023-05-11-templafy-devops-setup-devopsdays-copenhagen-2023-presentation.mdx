@@ -1,0 +1,25 @@
+---
+title: Templafy DevOps setup presentation at DevOpsDays Copenhagen 2023
+slug: templafy-devops-setup-devopsdays-copenhagen-2023-presentation
+date: "2023-05-11"
+tags: [Presentations, DevOpsDays, DevOps, Pipelines]
+---
+
+Last week I did my [first conference talk](https://devopsdays.org/events/2023-copenhagen/program/rasmus-kromann-larsen) in a few years at DevOpsDays Copenhagen 2023. I really enjoyed the conference as well - lots of interesting people and great Open Spaces sessions that served to both connect people and also have much more in-depth conversations about audience provided topics.
+
+My talk was a whirlwind tour of the build pipelines we use at Templafy to push our code to production. As part of the presentation I did an actual deployment to production and described what was going on and why we ended up there. Practical tips on the approaches we had taken to evolve to this place.
+
+<img src="/devopsdays-talk.jpg" />
+
+Original abstract below in case it is removed from the DevOpsDays site at some point.
+
+
+## The Road to Production: How our build pipelines evolved
+
+All software must go to production to provide value and this road has a lot of different approaches. At Templafy we believe in shipping our code as quickly as possible. Over the last 3 years, we have been evolving our build pipelines to keep up with onboarding many new colleagues while reducing the risk of breakage through more tests and static analysis. Today we ship 10.000 pull requests to production per year with a dynamically scaling fleet of build agents that has more compute (240 cores and nearly 1 TB of RAM) than our actual production environment at peak.
+
+In this talk, we will explore the problems we have faced and the solutions we picked - what worked and what did not work? Along the way there will be practical tips that can be applied at any level of build automation no matter if you are just starting out or already have an advanced setup.
+
+The demos will be based on Azure DevOps but the problems discussed also apply to build services like GitHub Actions and others.
+
+<img src="/devopsdays-talk-2.jpg" />
